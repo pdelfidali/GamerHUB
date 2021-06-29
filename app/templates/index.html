@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+    <div class="row h-75 d-flex index-row align-items-center justify-content-center">
+        <div class="col d-flex align-items-center justify-content-center img-col">
+            <img src="../static/images/game-console.png" height="256" width="256">
+        </div>
+        <div class="w-100"></div>
+        <div class="col d-flex align-items-center justify-content-center txt-col">
+            <h1>GamerHUB</h1>
+            <h4>kolege se znajdz</h4>
+        </div>
+    </div>
+    {% if not current_user.is_authenticated %}
+        <div class="row secondary-row d-flex index-row align-items-center justify-content-center">
+            <div class="col d-flex">
+                <a href="/login">
+                <img class="login-icon" width="60" height="60" alt="Login" src="../../static/images/bootstrap-icons/icons/box-arrow-in-right.svg" data-toggle="tooltip" data-placement="bottom" title="login">
+            </a>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

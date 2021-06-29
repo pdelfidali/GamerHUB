@@ -1,0 +1,14 @@
+.idea
+venv/
+.DS_Store
+/systemctl
+app/__pycache__/__init__.cpython-38.pyc
+*.pyc
+*.pyc
+*.pyc
+*.pyc
+*.pyc
+app/announce/__pycache__/__init__.cpython-39.pyc
+*.pyc
+*.pyc
+*.pyc

@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block page_content %}
+    <div class="page-row comment-row">
+        <div>
+        <h1>
+            <span class="nick">
+                <img width="50" height="50" src="../../static/images/pencil.png">
+                {{ announcement.title }}
+            </span>
+        </h1>
+            {% if announcement.creator == current_user.username %}
+                {{ wtf.quick_form(edit_form) }}
+            {% endif %}
+        <div>
+            <h5>
+                <span>
+                    <img src="../../static/images/swords.png" height="20" width="20">
+                    Autor:
+                </span>
+            </h5>
+        </div>
+            <div class="user-discord">
+                <h2>
+                  <span class="nick"><img width="50" height="50" src="../../static/images/gamer.png">
+                      <a href="/user/{{ announcement.creator }}/1">{{ announcement.creator }}</a>
+                  </span>
+                </h2>
+            </div>
+        <div>
+            <h5>
+                <span>
+                    <img src="../../static/images/scroll.png" height="20" width="20">
+                    Treść ogłoszenia:
+                </span>
+            </h5>
+        </div>
+            <p class="text-emphasis"> {{ announcement.content }}</p>
+        </div>
+
+        <div>
+            <div>
+                <h2>Komentarze</h2>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Komentarz</th>
+                            <th scope="col">Autor</th>
+                            <th scope="col">Dodano</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for comment in comments %}
+                        <tr>
+                            <td>{{ comment.content }}</td>
+                            <td>{{ comment.creator }}</td>
+                            <td>{{ moment(comment.date).fromNow() }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% if announcement.open %}
+            {% if current_user.is_authenticated %}
+            <div class="add-comment">
+                <h1 class="an-display">Dodaj komentarz</h1>
+                {{ wtf.quick_form(comment_form) }}
+            </div>
+            {% endif %}
+        {% else %}
+            <div>
+                <h1 class="an-display">Ogłoszenie jest zamknięte</h1>
+            </div>
+        {% endif %}
+        </div>
+    </div>
+{% endblock %}

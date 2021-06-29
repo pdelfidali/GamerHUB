@@ -1,0 +1,22 @@
+$font-stack: "Comic Sans MS", cursive, sans-serif;
+
+.error-handler{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  h1{
+    font: $font-stack;
+    color: hotpink;
+    &:hover{
+      -webkit-transform: scale(1.1);
+      text-shadow: white 2px 2px;
+    }
+  }
+  img{
+    &:hover{
+      -webkit-transform: scale(1.1);
+      text-shadow: white 2px 2px;
+    }
+  }
+}

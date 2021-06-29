@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+    <div class="container bio-container align-items-center">
+        <div class="row">
+            <div class="card user-card">
+                  <div class="card-body">
+                      <ul class="card-title list-group list-inline">
+                          <li class="list-group-item">
+                              <span class="nick"><img width="50" height="50" src="../../static/images/gamer.png">
+                                  {{ user.username }}
+                              </span>
+                          </li>
+                          <li class="right list-group-item list-inline">
+                              {% if user.steamID != '' %}
+                                  <a href="{{ user.steamID }}" target="_blank">
+                                      <img src="../../static/images/steam-2.png" width="32" height="32">
+                                  </a>
+                              {% endif %}
+                              {% if user.lolProfileLink != '' %}
+                                <a href="{{ user.lolProfileLink }}" target="_blank">
+                                    <img width="32" height="32" src="../../static/images/lolicon.png" alt="">
+                                </a>
+                              {% endif %}
+                              {% if user.discord != '' %}
+                                  <div>
+                                      <a>
+                                        <img onclick="discord()" width="40" height="40" style="padding-top: 2px" src="../../static/images/Discord-Logo-Color.png">
+                                      </a>
+                                  </div>
+                              {% endif %}
+                          </li>
+                      </ul>
+                      <ul class="list-inline discord-row">
+                          <li class="list-group-item">
+                              <h6 id="dsc">{{ user.discord }}</h6>
+                          </li>
+                          <li class="list-group-item">
+                              <h6 id="copied" class="copied">discord ID copied to clipboard!</h6>
+                          </li>
+                      </ul>
+                      <h6 class="card-subtitle mb-2 text-muted">emerging plaer</h6>
+                      <p class="card-text-emphasis">
+                        {{ user.bio }}
+                      </p>
+                      {% if user.username == current_user.username %}
+                          <ul class="list-inline">
+                              <li class="list-group-item">
+                                  <a href="/user/editbio" class="card-link">Edytuj swój opis</a>
+                              </li>
+                              <li class="list-group-item">
+                                  <a href="/user/add_links" class="card-link">Dodaj linki</a>
+                              </li>
+                          </ul>
+                      {% endif %}
+                  </div>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-around ann-row">
+            <div class="col-12 col-sm-12">
+                <div class="card an-add">
+                    <img height="32" width="32" src="../../static/images/swords.png" class="card-img-top">
+                    <div class="card-body">
+                        <h6 class="card-title">Szukasz kolegów do gry? <br/> Dodaj ogłoszenie!</h6>
+                        <a href="/announce"><img src="../../static/images/pencil.png" alt="Dodaj ogłoszenie!"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12">
+                <div class="card an-view">
+                    <img height="32" width="32" src="../../static/images/compass.png" class="card-img-top">
+                    <div class="card-body">
+                        <h6 class="card-title">Przeglądaj ogłoszenia</h6>
+                        <a href="/announcement/1"><img src="../../static/images/seo.png" alt="Wyświetl ogłoszenia"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <script>
+        function discord() {
+          var copyText = document.getElementById('dsc');
+          var temp = document.createElement("textarea");
+          document.body.appendChild(temp);
+          temp.value = copyText.innerText;
+          temp.select();
+          document.execCommand("copy");
+          document.body.removeChild(temp);
+          document.getElementById("copied").style= ' ';
+          void document.getElementById("copied").offsetWidth;
+          document.getElementById("copied").style.animation="in-out 1s linear 1";
+        }
+    </script>
+    {#ogłoszenia nizej#}
+        <div class="row display-row">
+            <h2 class="an-display">Moje ogłoszenia</h2>
+        {% for announcement in announcements.items %}
+            <div class="aux">
+                <img height="32" width="32" src="../../static/images/loudspeaker.png">
+                <div class="alert" role="alert">
+                    <a href="/view_announcement/{{ announcement.id }}"> {{ announcement.title }}</a>
+                </div>
+            </div>
+        {%  endfor %}
+            <div class="page-row">
+                <img src="../../static/images/bootstrap-icons/icons/arrow-left-right.svg" height="15" width="15" alt="">
+        {%  for page in announcements.iter_pages() %}
+            {%  if page %}
+                <a class="page" href="{{ page }}">{{ page }}</a>
+            {% else %}
+
+            {% endif %}
+        {%  endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

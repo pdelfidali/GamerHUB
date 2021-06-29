@@ -1,0 +1,52 @@
+{% extends "bootstrap/base.html" %}
+
+{#HEAD BLOCK#}
+{% block head %}
+    {{super()}}
+    <title>{% block title %}GamerHUB{% endblock %}</title>
+    {% block scripts %}
+        {{super()}}
+        {{ moment.include_moment() }}
+        {{ moment.locale('pl') }}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"/>
+    {% endblock %}
+    <link rel='shortcut icon' type='image/x-icon' href='../../static/images/favicon.ico' />
+{% endblock %}
+
+{#NAVBAR BLOCK#}
+{% block navbar %}
+{#    {% if current_user.is_authenticated %}#}
+        {% include "static_form/header.html" %}
+{#    {% endif %}#}
+{% endblock %}
+
+{#CONTENT BLOCK#}
+{% block content %}
+    <body class="web-body">
+        <main class="main d-flex align-items-center">
+            <div class="d-flex align-items-center main-container">
+                <div class="row d-flex align-items-center main-row">
+                    <div class="col-md-8 main-column">
+                   {% with messages = get_flashed_messages() %}
+                      {% if messages %}
+                        <script>
+                          var messages = {{ messages | safe }};
+                          for (var i=0; i<messages.length; i++) {
+                            alert(messages[i]);
+                          }
+                        </script>
+                      {% endif %}
+                    {% endwith %}
+                    {#CONTENT INSERTED INTO TEMPLATE#}
+                    {% block page_content %}{% endblock %}
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        {#FOOTER#}
+        {% block footer %}
+            {% include "static_form/footer.html" %}
+        {% endblock %}
+    </body>
+{% endblock %}

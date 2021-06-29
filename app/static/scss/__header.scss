@@ -1,0 +1,64 @@
+$font-stack: "Comic Sans MS", cursive, sans-serif;
+
+.navbar {
+  justify-content: center;
+  background: transparent;
+}
+.navbar-brand{
+  margin-top:-4px;
+  &:hover{
+    background-color: transparent !important;
+    color: #59344F !important;
+  }
+}
+.login-icon:hover{
+  background-color: transparent;
+  -webkit-transform: scale(1.4);
+  color: white !important;
+}
+.navbar-inverse{
+  //background-color: #FF8552;
+  color: #39393A;
+  align-items: center;
+  justify-content: center;
+  border: 0px;
+
+  .navbar-brand{
+    font: 100% $font-stack;
+    color: #59344F;
+    min-font-size: 120%;
+  }
+  .navbar-right{
+    margin-top:15px;
+    margin-right:5px;
+    list-style: none;
+    .list-inline-item > a{
+      text-decoration: none;
+    }
+  }
+  .nav-item{
+    color: red;
+  }
+  .nav-link{
+    font: 100% $font-stack !important;
+    color: black !important;
+    &:hover{
+      -webkit-transform: scale(1.1) !important;
+      color: #59344F !important;
+    }
+  }
+  .logout{
+    margin-top: -2px;
+    &:hover{
+      -webkit-transform: scale(1.2) !important;
+    }
+  }
+  .nick > a{
+    color: #566246 !important;
+    font: 100% $font-stack !important;
+    &:hover {
+      -webkit-transform: scale(1.4) !important;
+      color: #FF0035 !important;
+    }
+  }
+}

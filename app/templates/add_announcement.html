@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block head %}
+    {{super()}}
+    <title>{% block title %}Dodaj swoje ogłoszenie{% endblock %}</title>
+    {% block scripts %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"/>
+    {% endblock %}
+{% endblock %}
+
+
+{% block page_content %}
+<div class="container">
+    {{ wtf.quick_form(form) }}
+</div>
+<div class="container">
+    {{ wtf.quick_form(add_game_form) }}
+</div>
+
+{% endblock %}

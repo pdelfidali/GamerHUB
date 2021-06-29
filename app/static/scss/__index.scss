@@ -1,0 +1,36 @@
+$font-stack: "Comic Sans MS", cursive, sans-serif;
+
+.index_row{
+  display: flex;
+  flex-wrap: wrap;
+}
+.txt-col{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  //text-align: left;
+  padding-top: 50px;
+  justify-content: center;
+  font: 100% $font-stack;
+  color: #2F4550;
+  h1 {
+    color: #59344F;
+  }
+}
+.img-col{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40px;
+}
+.secondary-row{
+  align-items: center;
+  justify-content: center;
+}
+.col{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

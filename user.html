@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+<<<<<<< HEAD
+    <div class="container bio-container align-items-center">
+        <div class="row">
+            <div class="card user-card">
+                  <div class="card-body">
+                      <span class="card-title">
+                          <img width="50" height="50" src="../../static/images/gamer.png">
+                          {{ user.username }}
+                      </span>
+                    <h6 class="card-subtitle mb-2 text-muted">emerging plaer</h6>
+                    <p class="card-text-emphasis">
+                        {{ user.bio }}
+                    </p>
+                      {% if user.username == current_user.username %}
+                        <a href="/user/editbio" class="card-link">Edytuj swój opis</a>
+                      {% endif %}
+                  </div>
+=======
+    <div class="container">
+        <div class="card">
+                <h4 class="mb-0 mt-0">{{ user.username }}</h4>
+                <i class="fa fa-steam" aria-hidden="true"></i>
+                <table class="table">
+                    <tr><td>{{ user.bio }}</td></tr>
+                    <tr><td><a href="{{ user.steamID }}" target="_blank">Steam link</a></td></tr>
+                    <tr><td><a href="{{ user.lolProfileLink }}" target="_blank">op.gg</a></td></tr>
+                </table>
+        </div>
+    </div>
+    <div>
+        {% if user.username == current_user.username %}
+            <a href="/user/editbio">Edytuj swój opis</a><br>
+            <a href="/user/add_links">Dodaj link do Steam/op.gg</a>
+        {% endif %}
+    </div>
+    <div>
+        {% for announcement in announcements.items %}
+            <div class="alert" role="alert">
+                <a href="/view_announcement/{{ announcement.id }}"> {{ announcement.title }} użytkownika {{ announcement.creator }}</a>
+>>>>>>> 45e19115839dd1df9fda4a159e29b8c096615ee7
+            </div>
+        </div>
+        <div class="row d-flex justify-content-around ann-row">
+            <div class="col-12 col-sm-12">
+                <div class="card an-add">
+                    <img height="32" width="32" src="../../static/images/swords.png" class="card-img-top">
+                    <div class="card-body">
+                        <h6 class="card-title">Szukasz kolegów do gry? <br/> Dodaj ogłoszenie!</h6>
+                        <a href="/announce"><img src="../../static/images/pencil.png" alt="Dodaj ogłoszenie!"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12">
+                <div class="card an-view">
+                    <img height="32" width="32" src="../../static/images/compass.png" class="card-img-top">
+                    <div class="card-body">
+                        <h6 class="card-title">Przeglądaj ogłoszenia</h6>
+                        <a href="/announcement/1"><img src="../../static/images/seo.png" alt="Wyświetl ogłoszenia"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{#    <div>#}
+{#        <h1>{{ user.username }}</h1>#}
+{#    </div>#}
+{#    <div>#}
+{#        {% if user.username == current_user.username %}#}
+{#            <a href="/user/editbio">Edytuj swój opis</a><br>#}
+{#        {% endif %}#}
+{#        {{ user.bio }}#}
+{#    </div>#}
+{#    <div>#}
+{#        {% for announcement in announcements.items %}#}
+{#            <div class="alert" role="alert">#}
+{#                <a href="/view_announcement/{{ announcement.id }}"> {{ announcement.title }} użytkownika {{ announcement.creator }}</a>#}
+{#            </div>#}
+{#        {%  endfor %}#}
+{##}
+{#        {%  for page in announcements.iter_pages() %}#}
+{#            {%  if page %}#}
+{#                <a href="{{ page }}">{{ page }}</a>#}
+{#            {% else %}#}
+{##}
+{#            {% endif %}#}
+{#        {%  endfor %}#}
+{#    </div>#}
+{% endblock %}

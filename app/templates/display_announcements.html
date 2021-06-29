@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block page_content %}
+    <div>
+    <div>
+        <h1>Filtry</h1>
+        <button onclick="showHideFilters()" id="button">Schowaj filtry</button>
+        <div id="filters">
+            {{ wtf.quick_form(form) }}
+        </div>
+        <script>
+            function showHideFilters() {
+                var x = document.getElementById("filters");
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                    document.getElementById("button").innerText = 'Schowaj filtry';
+                } else {
+                    x.style.display = "none";
+                    document.getElementById("button").innerText = 'Pokaż filtry';
+                }
+            }
+            window.onload = function (){
+                var x = document.getElementById("filters");
+                x.style.display = "none";
+                document.getElementById("button").innerText = 'Pokaż filtry';
+            }
+        </script>
+    </div>
+    <table class="table an-tab">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Ogłoszenie</th>
+            <th scope="col">Gra</th>
+            <th scope="col">Autor</th>
+            <th scope="col">Ilość miejsc</th>
+            <th scope="col">Dodano</th>
+            <th scope="col">Edytowano</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for announcement in announcements.items %}
+            <tr>
+                <td><a href="/view_announcement/{{ announcement.id }}"> {{ announcement.title }}</a></td>
+                <td>{{ announcement.game }}</td>
+                <td>{{ announcement.creator }}</td>
+                <td>{{ announcement.amount }}</td>
+                <td>{{ moment(announcement.date).fromNow() }}</td>
+                <td>{{ moment(announcement.lastEdit).fromNow() }}</td>
+            </tr><br>
+        {%  endfor %}
+        </tbody>
+    </table>
+    </div>
+    <div class="page-row">
+        <img src="../../static/images/bootstrap-icons/icons/arrow-left-right.svg" height="15" width="15" alt="">
+        {%  for page in announcements.iter_pages() %}
+            <a class="page" href="{{ page }}">{{ page }}</a>
+        {%  endfor %}
+    </div>
+{% endblock %}
