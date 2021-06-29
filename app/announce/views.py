@@ -77,8 +77,6 @@ def display_announcements(page_num):
                           default=request.cookies.get('sort'))
         submit = SubmitField('Zastosuj filtry')
         clear = SubmitField('Wyczyść filtr')
-    for user in User.query.with_entities(User.username):
-        print (user[0])
     form = FiltersForm()
     # Z ciastkaiem:
     announcements = get_announcements(page_num, request.cookies.get('game'), request.cookies.get('amount'), request.cookies.get('sort'))
